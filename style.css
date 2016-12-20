@@ -1,0 +1,404 @@
+/*
+Theme Name: IDCMS
+Theme URI: http://kdpixels.com/themes/idcms/
+Author: the WordPress team
+Author URI: http://kdpixels.com/
+Description: IDCMS is a custom theme designed for IDCMSOA
+Text Domain: idcms
+
+This theme is copyright by kshitij deota.
+Using it without written permission is absolutely prohibited.
+*/
+
+/* -------------------
+  1. COMMONS
+  2. HEADER
+  3. NAVIGATION
+  4. SIDEBAR - LEFT
+  5. CONTENT
+  6. SIDEBAR - RIGHT
+  7. FOOTER
+------------------- */
+
+/* --- 1. COMMONS --- */
+
+a { text-decoration: none; }
+
+.current-menu-item a { color: #aaa; }
+
+.caption {
+  font-size: 1.2rem;
+}
+
+.form-inline {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.form-email {
+  border: 1px solid #D1D1D1;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 1.3rem;
+  box-shadow: none;
+  height: 32px;
+}
+
+.save-profile {
+  text-align: right;
+}
+
+.sub-text {
+  font-size: 1.3rem;
+  color: #888;
+}
+
+.message {
+  border: 1px solid #e2e287;
+  background: #fdfd96;
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  position: relative;
+  color: #888851;
+}
+
+.message:after {
+  border-radius: 20px;
+  text-align: center;
+  position: absolute;
+  line-height: 18px;
+  background: #fff;
+  content: "\00d7";
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  color: #aaa;
+  right: 15px;
+  top: 13px;
+}
+
+.pagination {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.pagination .page-numbers {
+  display: inline-block;
+  background: #f6f6f6;
+  border-radius: 3px;
+  padding: 3px 10px;
+}
+
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover {
+  background: #e6e6e6;
+}
+
+.success {
+  border-color: #83cc83;
+  background: #8edd8e;
+  color: #4b754b;
+}
+
+.error {
+  border-color: #d8b395;
+  background: #f0c7a6;
+  color: #724C2D;
+}
+
+.full-width-container {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  clear: both;
+}
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+address { font-style: normal; }
+
+form { margin-bottom: 0; }
+
+input[type="file"] {
+  background: rgba(0,0,0,0.125);
+  position: absolute;
+  overflow: hidden;
+  padding: 0 30px;
+  height: 0.1px;
+  width: 0.1px;
+  z-index: -1;
+  opacity: 0;
+}
+input[type="file"] + label { cursor: pointer; }
+input[type="file"]:focus + label,
+input[type="file"] + label:hover { outline: 0; }
+input[type="file"]:focus + label {
+  outline: -webkit-focus-ring-color auto 5px;
+  outline: 1px dotted #000;
+}
+input[type="file"]:focus {
+  border-color: #888;
+  color: #333;
+  outline: 0;
+}
+
+/* --- 2. HEADER --- */
+
+#header img { display: inline-block; }
+#header .header-left,
+#header .header-right,
+#header .header-center {
+  box-sizing: border-box;
+  float: left;
+}
+
+#header .header-left {
+  padding: 20px 30px 0;
+  background: #fff;
+  width: 18%;
+}
+
+#header .header-center {
+  padding: 30px 30px 16px;
+  background: #fdfdfd;
+  width: 64%;
+}
+
+#header .header-right {
+  background: #f6f6f6;
+  text-align: center;
+  padding: 20px;
+  width: 18%;
+}
+
+#logo-primary {
+  background: url(images/logo.jpg) no-repeat 0 0;
+  min-height: 128px;
+  display: block;
+}
+
+#logo-primary h1 {
+  padding-left: 175px;
+  padding-top: 30px;
+  letter-spacing: 0;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* --- 3. NAVIGATION --- */
+
+#navigation { margin-bottom: 50px; }
+#navigation ul { list-style: none;}
+#navigation li { position  : relative; }
+#navigation li a {
+  padding: 3px 0 3px 0;
+  letter-spacing: 1px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+}
+#navigation li a:hover { color: #888; }
+#navigation li.active a { color: #888; }
+#navigation .subnav {
+  position: relative;
+  padding-top: 10px;
+  margin: 0;
+}
+#navigation .subnav li { margin: 0; }
+#navigation .subnav li a {
+  padding: 10px 10px 10px 20px;
+  background: #fff;
+}
+#navigation .secondary li a { padding-right: 20px; }
+#navigation .secondary li span.gear {
+  font: normal normal 2rem sans-serif;
+  position: absolute;
+  display: block;
+  color: #aaa;
+  right: 0;
+  top: 0;
+  transition: all 0.3s;
+}
+
+/* --- 4. CONTENT --- */
+
+#content p:last-of-type { margin-bottom: 0; }
+#content .page-header .title { margin-bottom: 0; }
+#content .page-header .button { margin-bottom: 0; }
+
+#content,
+#sidebar-left,
+#sidebar-right {
+  box-sizing: border-box;
+  padding: 20px;
+  float: left;
+}
+
+#sidebar-right h2,
+#sidebar-right h3,
+#sidebar-right h4 {
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+#sidebar-right h4 { font-size: 1.2rem; }
+
+#sidebar-left {
+  background: #f6f6f6;
+  width: 18%;
+}
+
+#content {
+  background: #fbfbfb;
+  padding: 30px;
+  width: 64%;
+}
+#content .title { font-size: 2.1rem; }
+#content .hero {
+  background: #F1F1F1;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  border-radius: 4px;
+}
+#content .vcard { margin-bottom: 30px; }
+#content .vcard span,
+#content .vcard span.title {
+  font-size: 1.3rem;
+  color: #676767;
+  display: block;
+}
+#content .vcard span.name { font-size: 1.8rem; }
+
+#table-members {
+  font-size: 1.2rem;
+  width: 100%;
+}
+#table-members tr {}
+#table-members tr:nth-child( even ) {
+  background: #fff;
+}
+#table-members thead,
+#table-members tfoot,
+#table-members tr:hover {
+  background: #e6e6e6;
+}
+#table-members th,
+#table-members td {
+  font-weight: 400;
+  padding: 5px 7px;
+}
+
+/* --- 5. SIDEBAR - RIGHT --- */
+
+#sidebar-right {
+  background: #fdfdfd;
+  width: 18%;
+}
+#sidebar-right hr { margin-bottom: 1.5rem; }
+#sidebar-right .button { margin-bottom: 0; }
+
+#president p,
+#president span,
+#sidebar-right .date,
+#sidebar-right .greeting,
+#sidebar-right .greeting + p {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 400;
+  display: block;
+  color: #888;
+}
+
+#sidebar-right .date { margin-bottom: 20px; }
+
+#president span,
+#sidebar-right .greeting {
+  margin-bottom: 0;
+  color: #676767;
+}
+
+#president { text-align: right; }
+
+#president span,
+#sidebar-right .day,
+#sidebar-right .greeting,
+#sidebar-right .greeting + p { font-size: 1.4rem; }
+
+#president p,
+#sidebar-right .greeting + p {
+  letter-spacing: .05rem;
+  font-size: 1.1rem;
+}
+
+#president h3 {
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+#president img { max-width: 120px; }
+
+#intro { margin-bottom: 30px; }
+
+#picture-form { text-align: right }
+
+#form-member-login {
+  background: #f6f6f6;
+  border-radius: 5px;
+  max-width: 300px;
+  padding: 30px;
+}
+
+#form-member-login label { color: #888; }
+
+#form-member-login p { margin-bottom: 10px; }
+
+#form-member-login input[type="submit"] { margin-bottom: 0; }
+
+#form-member-login input[type="text"],
+#form-member-login input[type="password"] { width: 100%; }
+
+/* --- 5. SIDEBAR - RIGHT --- */
+
+#birthdays h4 {
+  margin-bottom: 10px;
+  color: #888;
+}
+#birthdays ul {
+  list-style-position: outside;
+  list-style-color: yellow;
+  list-style-type: disc;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+#birthdays li {
+  margin-left: 30px;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  color: #676767;
+}
+
+/* -- PROFILE PAGE -- */
+
+.page-profile {}
+.page-profile .columns div {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.page-profile span {
+  display: inline-block;
+  margin-right: 10px;
+}
+.page-profile span:last-of-type {
+  color: #676767;
+}
