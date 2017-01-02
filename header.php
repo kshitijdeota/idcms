@@ -10,6 +10,9 @@
 
   <link href="" rel="stylesheet" type="text/css">
   <link rel="icon" type="image/jpg" href="<?php echo get_template_directory_uri();?>/images/favicon.png">
+  <script type="text/javascript">
+    var templateUrl = '<?php echo get_template_directory_uri(); ?>/images/';
+  </script>
   <?php wp_head(); ?>
 </head>
 <body>
@@ -21,7 +24,7 @@
         </div>
         <div class="header-center">
           <div id="branding">
-            <a href="../" id="logo-primary">
+            <a href="<?php echo site_url(); ?>" id="logo-primary">
               <h1>INDIAN DEFENCE CONTRACT MANAGEMENT SERVICE OFFICERS ASSOCIATION</h1>
             </a>
           </div>

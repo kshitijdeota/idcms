@@ -12,8 +12,8 @@
 $roles = array( 'Vice President', 'Treasurer', 'Secretary', 'Jt. Secretary' );
 $members = get_users( array( 'role__in' => $roles ) );
 foreach ( $members as $member ) :
-  $role = $member->roles[0];
-  $member_name = esc_html( sprintf( '%s %s %s', $member->name_title, $member->first_name, $member->last_name ) );
+  $role          = $member->roles[0];
+  $member_name   = esc_html( sprintf( '%s %s %s', $member->name_title, $member->first_name, $member->last_name ) );
   $each_member[] = array(
     'role'   => $role,
     'image'  => $member->image_url,

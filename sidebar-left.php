@@ -53,7 +53,7 @@ $office = $president[0]->office;
     <img src="<?php echo $image_url; ?>" alt="">
     <p>
       <?php echo "<span>" . $full_name . "</span>"; ?>
-      <?php echo get_designation($desig); ?><br />
+      <?php echo format_designation($desig); ?><br />
       <?php echo $office; ?><br />
     </p>
     <a href="./presidents-message/" class="button button-primary">President's Message</a>

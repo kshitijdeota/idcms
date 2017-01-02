@@ -6,8 +6,9 @@
 ?>
 <?php get_header(); ?>
 <?php get_sidebar('left'); ?>
-<img class="u-full-width" src="<?php echo get_template_directory_uri(); ?>/images/hero.jpg" alt="">
-<span class="caption">Picture: IDCMSOA Annual GBM Meeting 2016, New Delhi</span>
+<img class="u-full-width" src="<?php echo get_template_directory_uri(); ?>/images/newyear.jpg" alt="">
+<!-- <img class="u-full-width" src="<?php //echo get_template_directory_uri(); ?>/images/hero.jpg" alt=""> -->
+<!-- <span class="caption">Picture: IDCMSOA Annual GBM Meeting 2016, New Delhi</span> -->
 <hr>
 <!-- <div class="hero"></div> -->
 <div id="intro">

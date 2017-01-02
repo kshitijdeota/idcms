@@ -50,8 +50,8 @@ foreach ($users as $user) {
 <div id="sidebar-right">
   <span class="date"><?php echo $get_date; ?></span>
   <div id="events">
-    <a href="/news" class="button button-primary">News</a>&nbsp;
-    <a href="/upcoming-events" class="button button-primary">Events</a>
+    <a href="<?php echo site_url('/news/'); ?>" class="button button-primary"><i class="icon-newspaper"></i>News</a>
+    <a href="<?php echo site_url('/upcoming-events/'); ?>" class="button button-primary"><i class="icon-calendar"></i>Events</a>
   </div>
   <hr>
   <?php if ( is_user_logged_in() ) { ?>
@@ -59,29 +59,30 @@ foreach ($users as $user) {
     <?php echo $full_name; ?>
     </p>
     <p>
-      <?php echo get_designation($desig); ?><br>
+      <?php echo format_designation($desig); ?><br>
       <?php echo $office; ?><br>
       <?php echo "Phone: " . $mobile; ?>
     </p>
   <?php } ?>
   <div class="login"><?php
   if ( !is_user_logged_in() ) { ?>
-    <a href="/member-login/" title="Login" class="button button-secondary">Login</a><?php
+    <a href="<?php echo site_url('/member-login/');?>" title="Login" class="button button-secondary"><i class="icon-enter"></i>Login</a><?php
   } else { ?>
     <p>
-      <a href="./member-profile/" class="button">Profile</a>&nbsp;
-      <a href="<?php echo wp_logout_url( home_url() ); ?>" class="button button-secondary">Logout</a>
+      <a href="<?php echo site_url('/member-profile/');?>" class="button"><i class="icon-user-tie"></i>Profile</a>
+      <a href="<?php echo wp_logout_url( home_url() ); ?>" class="button button-secondary"><i class="icon-exit"></i>Logout</a>
     </p><?php
-    if ( $role == 'administrator' ) { ?>
-      <a href="/member-register/" class="button button-primary">Add a Member</a><?php
-    }
+      if ( current_user_can( 'administrator' ) ) { ?>
+      <a href="<?php echo site_url('/member-register/');?>" class="button button-primary">+ Add <i class="icon-user-tie"></i></a>
+      <a href="<?php echo site_url('/member-edit/');?>" class="button button-primary">+ Edit <i class="icon-user-tie"></i></a><?php
+      }
   } ?>
   </div>
   <hr>
-  <?php if ( $today_names || $tomorrow_names ) : ?>
+  <?php if ( isset($today_names) || isset($tomorrow_names) ) : ?>
     <div id="birthdays">
       <h3 class="title">Birthdays</h3>
-      <?php if ( $today_names ) : ?>
+      <?php if ( isset($today_names) ) : ?>
         <div>
           <h4>// Today</h4>
           <ul>
@@ -92,7 +93,7 @@ foreach ($users as $user) {
         </div>
       <?php endif; ?>
 
-      <?php if ( $tomorrow_names ) : ?>
+      <?php if ( isset($tomorrow_names) ) : ?>
         <div>
           <h4>// Tomorrow</h4>
           <ul>

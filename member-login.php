@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Member Login
+ * Template Name: Member Login Page
  * @package WordPress
  * @subpackage IDCMS
  */
