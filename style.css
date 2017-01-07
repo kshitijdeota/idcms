@@ -189,8 +189,10 @@ address { font-style: normal; }
 
 form { margin-bottom: 0; }
 
+label { color: #676767; }
 /* --- 2. HEADER --- */
 
+#header { max-width: 1349px; }
 #header img { display: inline-block; }
 #header .header-left,
 #header .header-right,
@@ -225,15 +227,20 @@ form { margin-bottom: 0; }
 }
 
 #logo-primary h1 {
-  font-family: georgia, serif;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
   padding-left: 175px;
-  padding-top: 25px;
+  padding-top: 10px;
   letter-spacing: 0;
   font-size: 2.1rem;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.5;
   margin-bottom: 0;
 }
+#logo-primary h1 span {
+  font-weight: 300;
+}
+
+#main { max-width: 1349px; }
 
 /* --- 3. NAVIGATION --- */
 
@@ -346,6 +353,7 @@ form { margin-bottom: 0; }
   position: relative;
   margin-left: 10px;
   margin-bottom: 0;
+  box-shadow: none;
   border: none;
   height: 24px;
   width: 24px;
@@ -425,7 +433,7 @@ form { margin-bottom: 0; }
 }
 
 .member-grid .member {
-  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+  border: 1px solid rgba(0,0,0,.05);
   padding: 10px 10px 5px 10px;
   transition: all .8s;
   background: #fdfdfd;

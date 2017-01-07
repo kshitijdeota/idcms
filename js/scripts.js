@@ -1,22 +1,14 @@
 jQuery( function($) {
-
-  var $document = $( document );
-
-  $document.ready( function(e) {
-
-    // SIDEBARS & THEIR HEIGHTS
+    // REPLACE BROKEN IMAGES ///////////////////////////////////////////
     window.onload = function () {
-      var contentHeight;
-      contentHeight = $( '#content' ).height();
-      $( '#sidebar-left' ).height( contentHeight );
-      $( '#sidebar-right' ).height( contentHeight );
-
-      // REPLACE BROKEN IMAGES ///////////////////////////////////////////
       var missingUrl = templateUrl;
       $( 'img' ).error( function(e) {
         $( this ).attr( 'src', missingUrl + 'missing.png' );
       });
     }
+
+  var $document = $( document );
+  $document.ready( function(e) {
 
     // NAVIGATION SLIDE OUTS //////////////////////////////////////////
     var subnav = $(".subnav");

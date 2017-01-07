@@ -25,7 +25,10 @@
         <div class="header-center">
           <div id="branding">
             <a href="<?php echo site_url(); ?>" id="logo-primary">
-              <h1>INDIAN DEFENCE CONTRACT MANAGEMENT SERVICE OFFICERS ASSOCIATION</h1>
+              <h1>
+                <span>भारतीय रक्षा अनुबंध प्रबंधन सेवा अधिकारी संघ</span><br />
+                INDIAN DEFENCE CONTRACT MANAGEMENT SERVICE<br />OFFICERS ASSOCIATION
+              </h1>
             </a>
           </div>
         </div>
@@ -34,4 +37,4 @@
         </div>
       </div>
     </header>
-    <div class="row">
+    <div id="main" class="row">
