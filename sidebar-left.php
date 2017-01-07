@@ -3,18 +3,14 @@
  * @package WordPress
  * @subpackage IDCMS
  */
-?>
-<?php
-
-$president = get_users( array( 'role' => 'President' ) );
-$image_url = $president[0]->image_url;
+$president  = get_users( array( 'role' => 'President' ) );
+$image_url  = $president[0]->image_url;
 $name_title = $president[0]->name_title;
 $first_name = $president[0]->first_name;
-$last_name = $president[0]->last_name;
-$full_name = $name_title . " " . $first_name . " " . $last_name;
-$desig = $president[0]->designation;
-$office = $president[0]->office;
-
+$last_name  = $president[0]->last_name;
+$fullname  = $name_title . " " . $first_name . " " . $last_name;
+$desig      = $president[0]->designation;
+$office     = $president[0]->office;
 ?>
 <div id="sidebar-left">
   <div id="navigation">
@@ -52,9 +48,9 @@ $office = $president[0]->office;
     <h3>PRESIDENT - IDCMSOA</h3>
     <img src="<?php echo $image_url; ?>" alt="">
     <p>
-      <?php echo "<span>" . $full_name . "</span>"; ?>
-      <?php echo format_designation($desig); ?><br />
-      <?php echo $office; ?><br />
+      <?php echo "<span>" . $fullname . "</span>"; ?>
+      <?php echo "<i class='icon-user-tie'></i>" . format_designation( $desig ); ?><br />
+      <?php echo "<i class='icon-briefcase'></i>" . $office; ?><br />
     </p>
     <a href="./presidents-message/" class="button button-primary">President's Message</a>
   </div>

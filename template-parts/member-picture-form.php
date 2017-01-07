@@ -28,8 +28,10 @@
   <input type="hidden" id="dataScaleY" name="dataScaleY">
   <input type="hidden" id="dataAngle" name="dataAngle">
 
-  <input type="hidden" name="member_id" value="<?php echo $member['member_id']; ?>">
-  <a href="<?php site_url( '/member-profile/', null ); ?>" class="button"><i class="icon-cancel-circle"></i>Cancel</a/>
-  <button id="dataUpload" type="submit" name="dataUpload" class="button-primary"><i class="icon-floppy-disk"></i>Save</button>
+  <input type="hidden" name="member-id" value="<?php echo $member['ID']; ?>">
+  <div class="row">
+    <a href="<?php site_url( '/member-profile/', null ); ?>" class="button"><i class="icon-cancel-circle"></i>Cancel</a/>
+    <button id="dataUpload" type="submit" name="dataUpload" class="button-primary"><i class="icon-floppy-disk"></i>Save</button>
+  </div>
 
 </form>

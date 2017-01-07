@@ -1,23 +1,34 @@
-jQuery(function($) {
-  $(document).ready(function(e) {
+jQuery( function($) {
 
-    // REPLACE BROKEN IMAGES ///////////////////////////////////////////
-    var missingUrl = templateUrl;
+  var $document = $( document );
 
-    $('img').error(function(e){
-      $(this).attr('src', missingUrl + 'missing.png');
-    });
+  $document.ready( function(e) {
+
+    // SIDEBARS & THEIR HEIGHTS
+    window.onload = function () {
+      var contentHeight;
+      contentHeight = $( '#content' ).height();
+      $( '#sidebar-left' ).height( contentHeight );
+      $( '#sidebar-right' ).height( contentHeight );
+
+      // REPLACE BROKEN IMAGES ///////////////////////////////////////////
+      var missingUrl = templateUrl;
+      $( 'img' ).error( function(e) {
+        $( this ).attr( 'src', missingUrl + 'missing.png' );
+      });
+    }
 
     // NAVIGATION SLIDE OUTS //////////////////////////////////////////
+    var subnav = $(".subnav");
     var tab = $(".subnav").prev();
 
-    $(".subnav").prev().before("<span class='gear'>+</span>");
-    $(".subnav").hide();
+    subnav.prev().before("<span class='gear'>+</span>");
+    subnav.hide();
 
     tab.click( function(e) {
       e.preventDefault();
-      var thisSubnav = $(this).next(".subnav");
-      var thisGear = $(this).prev(".gear");
+      var thisSubnav = $(this).next(".subnav"),
+          thisGear = $(this).prev(".gear");
 
       thisSubnav.slideToggle();
 
@@ -26,7 +37,7 @@ jQuery(function($) {
       } else {
         thisGear.css("transform","" );
       }
-      $(".subnav").not(thisSubnav).slideUp();
+      subnav.not(thisSubnav).slideUp();
       $(".gear").not(thisGear).css("transform","" );
     });
 
@@ -34,23 +45,12 @@ jQuery(function($) {
       $( '.member-grid .row' ).addClass( 'row__closed' );
       $( '.member-grid .member' ).addClass( 'hide' );
 
-    $(document).on('click', '.member', function() {
-
-      $( '.member-grid .row' )
-        .removeClass( 'row__open' ).addClass( 'row__closed' );
-      $( '.member-grid .member' )
-        .removeClass( 'show' ).addClass( 'hide' );
-
-      $( this ).closest( '.row' )
-        .removeClass( 'row__closed' )
-        .addClass( 'row__open' );
-      $( this )
-        .removeClass( 'hide' )
-        .addClass( 'show' );
+    $document.on('click', '.member', function() {
+      $( '.member-grid .row' ).removeClass( 'row__open' ).addClass( 'row__closed' );
+      $( '.member-grid .member' ).removeClass( 'show' ).addClass( 'hide' );
+      $( this ).closest( '.row' ).removeClass( 'row__closed' ).addClass( 'row__open' );
+      $( this ).removeClass( 'hide' ).addClass( 'show' );
     });
-
-
-
 
     // IMAGE CROP /////////////////////////////////////////////////
     var $image      = $('#picture-profile img'),
@@ -106,8 +106,6 @@ jQuery(function($) {
       }
     });
 
-
-
     // IMPORT UPLOADED IMAGE BLOB ////////////////////////////////////////
     var URL = window.URL || window.webkitURL;
     var blobURL;
@@ -140,6 +138,24 @@ jQuery(function($) {
       });
     } else {
       $inputImage.prop('disabled', true).parent().addClass('disabled');
+    }
+
+    var grid = document.getElementsByClassName( 'grid' );
+    if( 0 < grid.length ) {
+      $( '.grid' ).imagesLoaded( function() {
+        $( function() {
+          var gridImages = $( '.grid-item img' );
+          gridImages.each( function(i) {
+            $( this ).delay( ( i++ ) * 100 ).fadeTo( 1000, 1 );
+          });
+          $( '.grid' ).lightGallery({
+            selector: '.grid-item',
+            mode: 'lg-fade',
+            cssEasing: 'ease-out',
+            download: false,
+          });
+        });
+      });
     }
 
   }); // $(document).ready();

@@ -1,20 +1,24 @@
 <?php
 
-global $paged;
-global $number;
 global $total_users;
+global $total_paged;
+global $total_pages;
 
-if( $total_users > $number ) :
-  $pl_args = array(
-    'base'     => add_query_arg('paged','%#%'),
-    'format'   => '',
-    'total'    => ceil($total_users / $number),
-    'current'  => max(1, $paged),
-  );
+if ($total_users > $total_paged) {
 
-  if( $GLOBALS['wp_rewrite']->using_permalinks() )
-    $pl_args['base']     = user_trailingslashit(trailingslashit(get_pagenum_link(1)).'page/%#%/', 'paged');
-    $pl_args['show_all'] = true;
+    $current_page = max(1, get_query_var('paged'));
 
-  echo '<div class="pagination">' . "Page : " . paginate_links($pl_args) . '</div>';
-endif;
+    $query_args = array(
+      'base'      => get_pagenum_link(1) . '%_%',
+      'format'    => 'page/%#%/',
+      'current'   => $current_page,
+      'total'     => $total_pages,
+      'show_all'  => true,
+      'prev_next' => true,
+      'prev_text' => __('« Previous'),
+      'next_text' => __('Next »'),
+    );
+
+    echo '<div class="pagination">' . paginate_links($query_args) . '</div>';
+}
+

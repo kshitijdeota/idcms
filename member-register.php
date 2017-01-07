@@ -5,8 +5,7 @@
  * @subpackage IDCMS
  */
 ?>
-<?php $member_role = $current_user->roles[0]; ?>
-
+<?php idcms_auth_admin(); ?>
 <?php get_header(); ?>
 <?php get_sidebar('left'); ?>
 <h2 class="title"><?php the_title(); ?></h2>

@@ -192,13 +192,13 @@ input[type="button"] {
   white-space: nowrap;
   text-align: center;
   border-radius: 4px;
-  line-height: 31px;
+  line-height: 33px;
   font-weight: 600;
   font-size: 11px;
   padding: 0 10px;
   cursor: pointer;
   color: #676767;
-  height: 33px;
+  height: 32px;
 }
 .button:hover,
 button:hover,

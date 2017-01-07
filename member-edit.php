@@ -1,44 +1,69 @@
 <?php
 /**
  * Template Name: Member Edit
- *
  * @package WordPress
  * @subpackage IDCMS
+ * USED TO EDIT THE USER PROFILE BY EMAIL
  */
-?>
-<?php get_header(); ?>
-<?php get_sidebar( 'left' ); ?>
-<?php
 
-// PROCESS MEMBER SELECT
-if ( isset( $_POST['member-select'] ) ) :
+idcms_auth();
+is_admin();
+get_header();
+get_sidebar( 'left' );
+
+// IF SEARCHING MEMBER TO EDIT else SHOW CURRENT MEMBER
+if ( isset( $_POST['member-email'] ) ) {
 
   $member_email = $_POST['member-email'];
-  $member_email = sanitize_email( $member_email );
-  $member       = get_user_by( 'email', $member_email );
-  $user_id      = $member->ID;
+  $user_id = get_member_by_email( $member_email );
 
-endif;
+} else {
+
+  $user_id = get_current_member_id();
+
+}
 
 // PROCESS MEMBER PROFILE
-if ( isset( $_POST['submit'] ) ) {
+if ( isset( $_POST['profile-submit'] ) ) {
 
-  $user_id = $_POST['member_id'];
-  update_member($user_id);
+  $data = $_POST;
+  $errors = validate_profile( $data );
+
+  if ( empty( $errors ) ) {
+
+    if ( current_user_can( 'administrator' ) ) {
+
+      $user_id = $_POST['member-id'];
+      update_member($user_id);
+
+    } else {
+
+      $user_id = get_current_member_id();
+      update_member($user_id);
+
+    }
+
+  } else {
+
+    foreach($errors as $error)
+
+      echo $error;
+
+  }
 
 }
 
 // PROCESS MEMBER PICTURE
 if ( isset($_POST['dataUpload'] ) ) {
 
-  $user_id = $_POST['member_id'];
+  $user_id = $_POST['member-id'];
   update_member_picture($user_id);
 
 }
 
 if( isset($user_id) ) {
 
-  $member = get_member( $user_id );
+  $member = get_member($user_id);
 
   $bday = $member['birthday'];
   $bday = explode( '-', $bday, 3 );
@@ -49,15 +74,13 @@ if( isset($user_id) ) {
 }
 
 ?>
+
 <h2 class="title"><?php the_title(); ?></h2>
+
 <hr>
-<?php
 
-if( !isset($user_id) )
+<?php if( isset($user_id) ) { ?>
 
-  get_template_part( 'template-parts/member-select', 'form' );
-
-if( isset($user_id) ) { ?>
   <div class="page-profile-edit">
     <div class="row">
       <div class="three columns">
@@ -68,7 +91,9 @@ if( isset($user_id) ) { ?>
       </div>
     </div>
   </div>
+
 <?php } ?>
+
 <?php get_sidebar('right'); ?>
 <?php get_footer(); ?>
 

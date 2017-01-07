@@ -11,12 +11,11 @@ global $members;
 
 echo "\n<ul class='member-list u-cf'>";
 
-$counter = 1;
+$counter     = 1;
 
 foreach ( $members as $member ) :
 
-  $m_name = esc_html( sprintf( '%s %s %s', $member->name_title, $member->first_name, $member->last_name ) );
-  // TOS
+  $m_name   = esc_html( sprintf( '%s %s %s', $member->name_title, $member->first_name, $member->last_name ) );
   $set_date = $member->tos;
   $tosd     = date_create( $set_date );
   $tosd_f   = date_format( $tosd, 'd M Y' );

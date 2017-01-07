@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 /**
  * Template Name: Members
@@ -6,75 +7,49 @@
  */
 ?>
 <?php get_header(); ?>
-<?php get_sidebar('left'); ?>
+<?php get_sidebar( 'left' ); ?>
 <?php
 
-get_users($args);
 
-$total_users = count_users();
-$total_users = $total_users['total_users'];
-$paged       = get_query_var('paged');
-$number      = 36;
+if ( isset( $_POST['filter'] ) ) {
+  $filter_option = $_POST['designation-filter-select'];
+  $expiration = 60*60*24;
+  set_transient( 'member-filter', $filter_option, $expiration );
+} else {
+  $filter_option = '';
+  $filter = $filter_option;
+}
+
+$paged       = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$number      = 28;
+$offset      = ( $paged - 1 ) * $number;
+$filter      = get_transient( 'member-filter' );
+$total_paged = count( $paged );
+$users       = get_users( array( 'meta_key' => 'designation','meta_value' => $filter, ) );
+$total_users = count( $users );
+$total_pages = intval( ( $total_users / $number ) + 1 );
 
 $members = get_users( array(
-  'orderby' => 'user_nicename',
-  'number'  => $number,
-  'offset'  => $paged ? ( $paged - 1 ) * $number : 0
+  'exclude'    => array(1),
+  'orderby'    => 'meta_value_num user_nicename',
+  'meta_key'   => 'designation',
+  'meta_value' => $filter,
+  'fields'     => 'all',
+  'order'      => 'ASC',
+  'offset'     => $offset,
+  'number'     => $number,
+  'paged'      => $paged,
 ) );
 
-if ( is_user_logged_in() ) :
 
-  global $current_user;
-  $user_id = $current_user->ID;
-
-  if ( isset($_POST['switcher']) ) :
-
-    $post = $_POST['switcher'];
-
-    if ( 'grid' == $post ) :
-
-      $view = 'grid';
-      update_user_meta( $user_id, 'switcher', $view, '' );
-
-    elseif ( 'list' == $post ) :
-
-      $view = 'list';
-      update_user_meta( $user_id, 'switcher', $view, '' );
-
-    endif;
-
-  endif;
-
-  $view = get_user_meta( $user_id, 'switcher', true );
-
-  if( isset($view)  ) :
-
-    if ( 'grid' == $view ) $grid = 'active';
-    if ( 'list' == $view ) $list = 'active';
-
-  endif;
-
-endif;
+$view = update_switcher();
 
 ?>
 
 <div class="row">
+  <h2 class="title float-left"><?php the_title(); ?></h2>
 
-  <h2 class="title float-left">IDCMS Members</h2>
-
-  <?php if ( is_user_logged_in() ) : ?>
-
-  <form method="POST" action="" enctype="multipart/form-data" name="switcher-form">
-    <div class="view-controls float-right"> Select View :
-
-      <button type="submit" value="list" id="list-view" name="switcher" class="switcher <?php echo $list; ?>" title="List View"></button>
-      <button type="submit" value="grid" id="grid-view" name="switcher" class="switcher <?php echo $grid; ?>" title="Grid View"></button>
-
-    </div>
-  </form>
-
-  <?php endif; ?>
-
+  <?php get_template_part( 'template-parts/view-switcher' ); ?>
 </div>
 
 <hr>
@@ -83,11 +58,15 @@ endif;
 
 get_template_part( 'template-parts/pagination' );
 
-if ( $view == 'grid' && $view != 'list' ) :
-  get_template_part( 'template-parts/grid', 'view' );
-elseif ( ( $view == 'list' && $view != 'grid' ) || $view == NULL ) :
-  get_template_part( 'template-parts/list', 'view' );
-endif;
+get_template_part( 'template-parts/member-filter' );
+
+if ( $view == 'grid' && $view != 'list' )
+
+get_template_part( 'template-parts/grid', 'view' );
+
+elseif ( ( $view == 'list' && $view != 'grid' ) || $view == NULL )
+
+get_template_part( 'template-parts/list', 'view' );
 
 get_template_part( 'template-parts/pagination' );
 
