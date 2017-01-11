@@ -166,20 +166,20 @@ foreach ( $roles as $role ) {
 }
 
 //REPLACE DEFAULT AUTHENTICATION
-remove_filter('authenticate', 'wp_authenticate_username_password', 20);
-add_filter('authenticate', function($user, $email, $password) {
+remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
+add_filter( 'authenticate', function( $user, $email, $password )  {
   if ( empty( $email ) || empty ( $password ) ) {
     $error = new WP_Error();
     if ( empty( $email ) )
-      $error->add('empty_username', __('<strong>ERROR</strong>: Email field is empty.'));
+      $error->add( 'empty_username', __( '<strong>ERROR</strong>: Email field is empty.' ) );
     elseif ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) )
-      $error->add('invalid_username', __('<strong>ERROR</strong>: Email is invalid.'));
-    if( empty( $password ) )
-      $error->add('empty_password', __('<strong>ERROR</strong>: Password field is empty.'));
+      $error->add( 'invalid_username', __( '<strong>ERROR</strong>: Email is invalid.' ) );
+    if ( empty( $password ) )
+      $error->add( 'empty_password', __( '<strong>ERROR</strong>: Password field is empty.' ) );
     return $error;
   }
 
-  $user = get_user_by('email', $email);
+  $user = get_user_by( 'email', $email );
 
   if( ! $user ) {
     $error = new WP_Error();
@@ -196,9 +196,9 @@ add_filter('authenticate', function($user, $email, $password) {
   }
 }, 20, 3);
 
-function upload_rename_filter( $file ){
+function upload_rename_filter( $file ) {
   $temp = explode( '.', $file['name'] );
-  $file['name'] = round( microtime( true ) ). '.' . end( $temp );
+  $file['name'] = round( microtime( true ) ) . '.' . end( $temp );
   return $file;
 }
 add_filter( 'wp_handle_upload_prefilter', 'upload_rename_filter' );
@@ -218,14 +218,14 @@ function disable_dashboard() {
     exit;
   }
 }
-add_action('admin_init', 'disable_dashboard');
+add_action( 'admin_init', 'disable_dashboard' );
 
 // REMOVE ADMIN-BAR FOR ALL
 function remove_admin_bar() {
   if ( ! current_user_can('administrator') && ! is_admin() )
     show_admin_bar( false );
 }
-add_action('after_setup_theme', 'remove_admin_bar');
+add_action( 'after_setup_theme', 'remove_admin_bar' );
 
 // $users = get_users();
 // if (!empty($users)) {
